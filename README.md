@@ -15,7 +15,7 @@ $ pip install sentry-datadog-helpers
 
 ## Client
 
-### sentry_datadog_helpers.raven.processors.DataDogTagProcessor
+### `sentry_datadog_helpers.raven.processors.DataDogTagProcessor`
 
 Processor for [raven](https://github.com/getsentry/raven-python)
 which attempts to find a [Datadog](https://www.datadoghq.com)
@@ -27,6 +27,28 @@ location on the host the client is running from.
 
 To enable, add `sentry_datadog_helpers.raven.processors.DataDogTagProcessor`
 to the configured `processors` for your `raven-python` client.
+
+#### Install
+
+`pip install sentry-datadog-helpers[raven]`
+
+#### Configuration
+
+```
+from raven import Client
+
+client = Client(processors=['sentry_datadog_helpers.raven.processors.DataDogTagProcessor'])
+```
+
+#### Flask Configuration
+
+```
+from raven.contrib.flask import Sentry
+
+sentry = Sentry()
+app.config['SENTRY_PROCESSORS'] = ['sentry_datadog_helpers.raven.processors.DataDogTagProcessor']
+sentry.init_app(app)
+```
 
 See `processors` under [Client Arguments](https://docs.getsentry.com/hosted/clients/python/advanced/#client-arguments)
 
