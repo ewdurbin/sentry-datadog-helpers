@@ -15,7 +15,7 @@ $ pip install sentry-datadog-helpers
 
 ## Client
 
-### sentry_data_dog_helpers.raven.processors.DataDogTagProcessor
+### sentry_datadog_helpers.raven.processors.DataDogTagProcessor
 
 Processor for [raven](https://github.com/getsentry/raven-python)
 which attempts to find a [Datadog](https://www.datadoghq.com)
@@ -25,7 +25,7 @@ loaded, and sent along with all events to the Sentry server.
 Requires `datadog` and a `dd-agent` configuration in a standard
 location on the host the client is running from.
 
-To enable, add `sentry_data_dog_helpers.raven.processors.DataDogTagProcessor`
+To enable, add `sentry_datadog_helpers.raven.processors.DataDogTagProcessor`
 to the configured `processors` for your `raven-python` client.
 
 See `processors` under [Client Arguments](https://docs.getsentry.com/hosted/clients/python/advanced/#client-arguments)
