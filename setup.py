@@ -5,6 +5,7 @@ sentry-datadog-helpers
 An suite of Sentry tools which enhance integrations with Datadog
 """
 from setuptools import setup
+from setuptools import find_packages
 
 install_requires = []
 
@@ -23,17 +24,13 @@ tests_require = [
 
 setup(
     name='sentry-datadog-helpers',
-    version='1.1.1',
+    version='1.1.2',
     author='Ernest W. Durbin III',
     author_email='ewdurbin@gmail.com',
     url='http://github.com/ewdurbin/sentry-datadog-helpers',
     description='Suite of Sentry tools which enhance integrations with Datadog.',
     long_description=__doc__,
-    packages=[
-        'sentry_datadog_helpers',
-        'sentry_datadog_helpers.raven',
-        'sentry_datadog_helpers.sentry.plugins.sentry_datadog',
-    ],
+    packages=find_packages(),
     extras_require={
         'raven': raven_requires,
         'sentry': sentry_requires,
