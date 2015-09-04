@@ -23,7 +23,7 @@ class DataDogTagProcessor(Processor):
             pass
         self.tags = {}
         for tag in filter(None, self.dd_config.get('tags', '').split(', ')):
-            k, v = tag.replace('"', '').strip().split(":")
+            k, v = tag.replace('"', '').strip().partition(":")[::2]
             self.tags[k] = v
         super(DataDogTagProcessor, self).__init__(client)
 

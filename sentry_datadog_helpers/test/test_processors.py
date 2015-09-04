@@ -32,3 +32,11 @@ class DataDogTagProcessorTestCase(unittest.TestCase):
                 proc = DataDogTagProcessor(mock.Mock())
                 result = proc.process({'tags': {}})
                 self.assertEqual(result, {'tags': {'foo': 'bar', 'baz': 'fuzz'}})
+
+    def test_with_datadog_processor_raw_tags(self):
+        with surrogate('datadog.util.config.get_config'):
+            with mock.patch('datadog.util.config.get_config',
+                            return_value={'tags': '"foo", "baz"'}):
+                proc = DataDogTagProcessor(mock.Mock())
+                result = proc.process({'tags': {}})
+                self.assertEqual(result, {'tags': {'foo': '', 'baz': ''}})
