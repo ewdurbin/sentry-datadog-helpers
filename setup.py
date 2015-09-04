@@ -23,7 +23,7 @@ tests_require = [
 
 setup(
     name='sentry-datadog-helpers',
-    version='1.1.0',
+    version='1.1.1',
     author='Ernest W. Durbin III',
     author_email='ewdurbin@gmail.com',
     url='http://github.com/ewdurbin/sentry-datadog-helpers',
@@ -32,6 +32,7 @@ setup(
     packages=[
         'sentry_datadog_helpers',
         'sentry_datadog_helpers.raven',
+        'sentry_datadog_helpers.sentry.plugins.sentry_datadog',
     ],
     extras_require={
         'raven': raven_requires,
