@@ -39,4 +39,4 @@ class DataDogTagProcessorTestCase(unittest.TestCase):
                             return_value={'tags': '"foo", "baz"'}):
                 proc = DataDogTagProcessor(mock.Mock())
                 result = proc.process({'tags': {}})
-                self.assertEqual(result, {'tags': {'foo': '', 'baz': ''}})
+                self.assertEqual(result, {'tags': {'data_dog_tags': ['foo', 'baz']}})

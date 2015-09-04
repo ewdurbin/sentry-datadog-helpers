@@ -24,7 +24,10 @@ class DataDogTagProcessor(Processor):
         self.tags = {}
         for tag in filter(None, self.dd_config.get('tags', '').split(', ')):
             k, v = tag.replace('"', '').strip().partition(":")[::2]
-            self.tags[k] = v
+            if v == '':
+                self.tags['data_dog_tags'] = self.tags.get('data_dog_tags', []) + [k]
+            else:
+                self.tags[k] = v
         super(DataDogTagProcessor, self).__init__(client)
 
     def process(self, data, **kwargs):
