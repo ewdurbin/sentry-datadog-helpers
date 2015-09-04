@@ -32,3 +32,19 @@ See `processors` under [Client Arguments](https://docs.getsentry.com/hosted/clie
 
 ## Server
 
+A Sentry sentry notifcation plugin is available which will forward
+notifications to Datadog, complete with any tags.
+
+### Install
+
+`pip install sentry-datadog-helpers[sentry]`
+
+### Configure
+
+```
+INSTALLED_APPS = INSTALLED_APPS + ('sentry.plugins.sentry_datadog',)
+
+# To enable for *ALL PROJECTS*
+#SENTRY_OPTIONS['SENTRY_DATADOG_API_KEY'] = 'deadbeefmyapikeydeadbeef'
+#SENTRY_OPTIONS['SENTRY_DATADOG_APP_KEY'] = 'beefdeadbeefmyappkeydeadbeefdead'
+```

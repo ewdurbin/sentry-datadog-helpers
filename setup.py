@@ -14,6 +14,7 @@ raven_requires = [
 
 sentry_requires = [
     'sentry>=7.4.0',
+    'datadog==0.9.0',
 ]
 
 tests_require = [
@@ -40,7 +41,6 @@ setup(
     license='BSD',
     zip_safe=False,
     install_requires=install_requires,
-    tests_require=tests_require,
     test_suite='tests',
     include_package_data=True,
     download_url='https://pypi.python.org/pypi/sentry-datadog-helpers',
