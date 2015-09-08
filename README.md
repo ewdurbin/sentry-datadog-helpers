@@ -32,7 +32,7 @@ to the configured `processors` for your `raven-python` client.
 
 `pip install sentry-datadog-helpers[raven]`
 
-#### Configuration
+#### Basic Configuration
 
 ```python
 import raven
