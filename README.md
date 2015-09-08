@@ -34,21 +34,57 @@ to the configured `processors` for your `raven-python` client.
 
 #### Configuration
 
-```
-from raven import Client
+```python
+import raven
 
-client = Client(processors=['sentry_datadog_helpers.raven.processors.DataDogTagProcessor'])
+RAVEN_PROCESSORS = list(raven.conf.defaults.PROCESSORS)  + \
+                  ['sentry_datadog_helpers.raven.processors.DataDogTagProcessor']
+client = raven.Client(processors=RAVEN_PROCESSORS)
 ```
 
 #### Flask Configuration
 
-```
+```python
+import raven
 from raven.contrib.flask import Sentry
 
+RAVEN_PROCESSORS = list(raven.conf.defaults.PROCESSORS)  + \
+                   ['sentry_datadog_helpers.raven.processors.DataDogTagProcessor']
+
 sentry = Sentry()
-app.config['SENTRY_PROCESSORS'] = ['sentry_datadog_helpers.raven.processors.DataDogTagProcessor']
+app.config['SENTRY_PROCESSORS'] = RAVEN_PROCESSORS
 sentry.init_app(app)
 ```
+
+### Django Configuration
+
+```python
+INSTALLED_APPS = INSTALLED_APPS + ['raven.contrib.django.raven_compat']
+import raven
+
+RAVEN_CONFIG = {
+    'processors': list(raven.conf.defaults.PROCESSORS) + [
+        'sentry_datadog_helpers.raven.processors.DataDogTagProcessor'
+    ],
+}
+```
+
+### Logging Integration
+
+```python
+import raven
+
+RAVEN_PROCESSORS = list(raven.conf.defaults.PROCESSORS)  + \
+                   ['sentry_datadog_helpers.raven.processors.DataDogTagProcessor']
+
+sentry_handler = {
+        'level': 'ERROR',
+        'class': 'raven.handlers.logging.SentryHandler',
+        'processors': RAVEN_CONFIG['processors'],
+    }
+```
+
+Add the `sentry_handler` to your logging DictConfig and enable it for a logger with appropriate level
 
 See `processors` under [Client Arguments](https://docs.getsentry.com/hosted/clients/python/advanced/#client-arguments)
 
