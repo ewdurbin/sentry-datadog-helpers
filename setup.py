@@ -20,7 +20,7 @@ sentry_requires = [
 
 tests_require = [
     'mock==1.3.0',
-] + [raven_requires + sentry_requires]
+] + raven_requires + sentry_requires
 
 setup(
     name='sentry-datadog-helpers',
