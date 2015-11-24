@@ -22,6 +22,9 @@ which attempts to find a [Datadog](https://www.datadoghq.com)
 agent configuration on the system. If found, the `tags` key is
 loaded, and sent along with all events to the Sentry server.
 
+Additionally, a metric `sentry.exception_captured` is incremented
+in datadog's statsd.
+
 Requires `datadog` and a `dd-agent` configuration in a standard
 location on the host the client is running from.
 
