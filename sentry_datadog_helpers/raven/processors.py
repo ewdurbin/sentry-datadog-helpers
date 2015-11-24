@@ -8,6 +8,8 @@ from __future__ import absolute_import
 
 from raven.processors import Processor
 
+from datadog import statsd
+
 
 class DataDogTagProcessor(Processor):
 
@@ -28,6 +30,7 @@ class DataDogTagProcessor(Processor):
                 self.tags['data_dog_tags'] = self.tags.get('data_dog_tags', []) + [k]
             else:
                 self.tags[k] = v
+        statsd.increment('sentry.exception_captured')
         super(DataDogTagProcessor, self).__init__(client)
 
     def process(self, data, **kwargs):
