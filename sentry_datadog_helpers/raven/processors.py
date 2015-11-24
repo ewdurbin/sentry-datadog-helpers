@@ -8,20 +8,21 @@ from __future__ import absolute_import
 
 from raven.processors import Processor
 
+try:
+    import datadog
+    HAS_DD = True
+except ImportError:
+    HAS_DD = False
 
 class DataDogTagProcessor(Processor):
 
     def __init__(self, client):
         self.dd_config = {}
-        self.has_dd = False
+        if HAS_DD:
         try:
-            import datadog
-            try:
-                self.dd_config = datadog.util.config.get_config()
-                self.has_dd = True
-            except datadog.util.config.CfgNotFound:
-                pass
-        except ImportError:
+            self.dd_config = datadog.util.config.get_config()
+            self.has_dd = True
+        except datadog.util.config.CfgNotFound:
             pass
         self.tags = {}
         for tag in filter(None, self.dd_config.get('tags', '').split(', ')):
@@ -34,7 +35,6 @@ class DataDogTagProcessor(Processor):
 
     def process(self, data, **kwargs):
         data['tags'].update(self.tags)
-        if self.has_dd:
-            from datadog import statsd
-            statsd.increment('sentry.exception_captured')
+        if HAS_DD:
+            datadog.statsd.increment('sentry.exception_captured')
         return super(DataDogTagProcessor, self).process(data, **kwargs)
