@@ -19,11 +19,11 @@ class DataDogTagProcessor(Processor):
     def __init__(self, client):
         self.dd_config = {}
         if HAS_DD:
-        try:
-            self.dd_config = datadog.util.config.get_config()
-            self.has_dd = True
-        except datadog.util.config.CfgNotFound:
-            pass
+            try:
+                self.dd_config = datadog.util.config.get_config()
+                self.has_dd = True
+            except datadog.util.config.CfgNotFound:
+                pass
         self.tags = {}
         for tag in filter(None, self.dd_config.get('tags', '').split(', ')):
             k, v = tag.replace('"', '').strip().partition(":")[::2]
