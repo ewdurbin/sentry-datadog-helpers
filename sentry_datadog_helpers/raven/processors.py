@@ -21,7 +21,6 @@ class DataDogTagProcessor(Processor):
         if HAS_DD:
             try:
                 self.dd_config = datadog.util.config.get_config()
-                self.has_dd = True
             except datadog.util.config.CfgNotFound:
                 pass
         self.tags = {}
