@@ -40,7 +40,7 @@ to the configured `processors` for your `raven-python` client.
 ```python
 import raven
 
-RAVEN_PROCESSORS = list(raven.conf.defaults.PROCESSORS)  + \
+RAVEN_PROCESSORS = list(raven.conf.defaults.PROCESSORS) + \
                   ['sentry_datadog_helpers.raven.processors.DataDogTagProcessor']
 client = raven.Client(processors=RAVEN_PROCESSORS)
 ```
@@ -51,7 +51,7 @@ client = raven.Client(processors=RAVEN_PROCESSORS)
 import raven
 from raven.contrib.flask import Sentry
 
-RAVEN_PROCESSORS = list(raven.conf.defaults.PROCESSORS)  + \
+RAVEN_PROCESSORS = list(raven.conf.defaults.PROCESSORS) + \
                    ['sentry_datadog_helpers.raven.processors.DataDogTagProcessor']
 
 sentry = Sentry()
