@@ -83,7 +83,7 @@ RAVEN_PROCESSORS = list(raven.conf.defaults.PROCESSORS)  + \
 sentry_handler = {
         'level': 'ERROR',
         'class': 'raven.handlers.logging.SentryHandler',
-        'processors': RAVEN_CONFIG['processors'],
+        'processors': RAVEN_PROCESSORS,
     }
 ```
 
