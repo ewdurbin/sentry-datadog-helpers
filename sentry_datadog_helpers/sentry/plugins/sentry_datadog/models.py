@@ -89,7 +89,7 @@ class DataDogOptionsForm(NotificationConfigurationForm):
     SENTRY_DATADOG_APP_KEY = forms.CharField(
         help_text='Datadog api_key',
         initial=getattr(settings, 'SENTRY_DATADOG_APP_KEY', None),
-        widget=forms.TextInput(attrs={'class': 'span8'})
+        widget=forms.TextInput(attrs={'class': 'span8'}))
 
 
 class DatadogPlugin(NotificationPlugin):
