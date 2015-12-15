@@ -24,7 +24,7 @@ tests_require = [
 
 setup(
     name='sentry-datadog-helpers',
-    version='1.3.0',
+    version='1.4.0',
     author='Ernest W. Durbin III',
     author_email='ewdurbin@gmail.com',
     url='http://github.com/ewdurbin/sentry-datadog-helpers',

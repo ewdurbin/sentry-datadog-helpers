@@ -14,6 +14,8 @@ import sentry
 from django import forms
 from django.utils.safestring import mark_safe
 
+from django.conf import settings
+
 from django.template import Context
 from django.template import Template
 
@@ -82,12 +84,12 @@ Project: {{ alert.project.name }}
 class DataDogOptionsForm(NotificationConfigurationForm):
     SENTRY_DATADOG_API_KEY = forms.CharField(
         help_text='Datadog app_key',
-        initial=sentry.options.get('SENTRY_DATADOG_API_KEY'),
+        initial=getattr(settings, 'SENTRY_DATADOG_API_KEY', None),
         widget=forms.TextInput(attrs={'class': 'span8'}))
     SENTRY_DATADOG_APP_KEY = forms.CharField(
         help_text='Datadog api_key',
-        initial=sentry.options.get('SENTRY_DATADOG_APP_KEY'),
-        widget=forms.TextInput(attrs={'class': 'span8'}))
+        initial=getattr(settings, 'SENTRY_DATADOG_APP_KEY', None),
+        widget=forms.TextInput(attrs={'class': 'span8'})
 
 
 class DatadogPlugin(NotificationPlugin):

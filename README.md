@@ -106,6 +106,6 @@ notifications to Datadog, complete with any tags.
 INSTALLED_APPS = INSTALLED_APPS + ('sentry.plugins.sentry_datadog',)
 
 # To enable for *ALL PROJECTS*
-#SENTRY_OPTIONS['SENTRY_DATADOG_API_KEY'] = 'deadbeefmyapikeydeadbeef'
-#SENTRY_OPTIONS['SENTRY_DATADOG_APP_KEY'] = 'beefdeadbeefmyappkeydeadbeefdead'
+SENTRY_DATADOG_API_KEY = 'deadbeefmyapikeydeadbeef'
+SENTRY_DATADOG_APP_KEY = 'beefdeadbeefmyappkeydeadbeefdead'
 ```
